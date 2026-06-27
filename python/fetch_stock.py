@@ -20,15 +20,14 @@ def fetch_stock(stock):
     df = yf.download(
         stock,
         period="5y",
-        interval="1mo"
+        interval="1d"
     )
     # formating datset
-    print(df.columns)
     df =  df.reset_index()
     df.columns = df.columns.get_level_values(0)
     df.columns.name = None
     df["Date"] = pd.to_datetime(df["Date"])
-    df["Date"] = df["Date"].dt.strftime("%b-%Y")
+    df["Date"] = df["Date"].dt.strftime("%d-%m-%Y")
     df = df[["Date", "Open", "High", "Low", "Close", "Volume"]]
     price_columns = ["Open", "High", "Low", "Close"]
     df[price_columns] = df[price_columns].round(2)
