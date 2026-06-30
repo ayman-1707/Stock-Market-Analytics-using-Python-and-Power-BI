@@ -18,3 +18,4 @@ print(df.empty)
 
 # print(df.head())
 # print(df.empty)
+print(df.tail())
