@@ -5,13 +5,38 @@ import os
 
 # make a list of stock what all u want 
 stocks = [
-    "CIPLA.NS",
-    "RELIANCE.NS",
-    "SBIN.NS",
-    "HDFCBANK.NS",
-    "ICICIBANK.NS",
-    "HINDUNILVR.NS"
+    "INFY.NS",         
+    "HCLTECH.NS",      
+    "SBIN.NS",        
+    "HDFCBANK.NS",     
+    "AXISBANK.NS",     
+    "ICICIBANK.NS",    
+    "HINDUNILVR.NS",   
+    "ITC.NS",         
+    "TRENT.NS",        
+    "TATACONSUM.NS",   
+    "TATAPOWER.NS",    
+    "COALINDIA.NS",    
+    "HINDALCO.NS",     
+    "MCX.NS",          
+    "BHARTIARTL.NS",   
+    "TVSMOTOR.NS",    
+    "TATAMOTORS.NS",   
+    "CIPLA.NS",        
+    "DRREDDY.NS",      
+    "LUPIN.NS",        
+    "SUNPHARMA.NS",    
+    "BAJAJFINSV.NS",   
+    "JIOFIN.NS",      
+    "HDFCLIFE.NS",    
+    "CHOLAFIN.NS",    
+    "LT.NS",           
+    "JSWSTEEL.NS",    
+    "TATASTEEL.NS",   
+    "TATACHEM.NS",     
+    "INDIGOPNTS.NS"    
 ]
+
 
 # fetch data using function
 def fetch_stock(stock):
@@ -22,6 +47,11 @@ def fetch_stock(stock):
         period="5y",
         interval="1d"
     )
+    # skipping part if there is no data
+    if df.empty:
+        print(f"No data found for {stock}")
+        return 
+    
     # formating datset
     df =  df.reset_index()
     df.columns = df.columns.get_level_values(0)

@@ -2,20 +2,16 @@
 import pandas as pd
 import os
 
-# create the same stock list without ns from fetch_data.py
-stocks = [
-    "CIPLA",
-    "RELIANCE",
-    "SBIN",
-    "HDFCBANK",
-    "ICICIBANK",
-    "HINDUNILVR"
-]
-
 # creating a function to clean
 def clean_stock(stock):
     print(f"\n cleaning {stock}.....")
     filename = f"Dataset/{stock}.csv"
+
+    # if we find any file misses skip
+    if not os .path.exists(filename):
+        print(f"{filename} not found .skipping.... ")
+        return
+    
     df = pd.read_csv(filename)
     print(df.head())
     print("\n Data Information")
@@ -31,6 +27,11 @@ def clean_stock(stock):
     df.to_csv(cleaned_filename,index=False)
     print(f"{cleaned_filename} saved successfully!!")
 
-# for loop 
-for stock in stocks:
-    clean_stock(stock)
+# if I copy name of comapnies from fetch_py there will be ns to avoid that ns 
+# automatically cleaning every csv from Dataset folder
+files =os.listdir("Dataset")
+
+for file in files:
+    if file.endswith(".csv"):
+        stock = file.replace(".csv", "")
+        clean_stock(stock)
