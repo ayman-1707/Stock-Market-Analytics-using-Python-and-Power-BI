@@ -1,21 +1,22 @@
 import yfinance as yf
+import os 
 
 df = yf.download("TATAMTRDVR.NS", period="5y")
 
-# print(df.head())
+print(df.head())
 print(df.empty)
 
-# import yfinance as yf
+import yfinance as yf
 
-# for ticker in ["SBIN.NS", "INFY.NS", "LT.NS"]:
-#     df = yf.download(ticker, period="5y", progress=False)
-#     print(ticker, "Empty:", df.empty)
+for ticker in ["SBIN.NS", "INFY.NS", "LT.NS"]:
+    df = yf.download(ticker, period="5y", progress=False)
+    print(ticker, "Empty:", df.empty)
 
-# import yfinance as yf
+import yfinance as yf
 
-# stock = yf.Ticker("TATAMOTORS.NS")
-# df = stock.history(period="5y")
+stock = yf.Ticker("TATAMOTORS.NS")
+df = stock.history(period="5y")
 
-# print(df.head())
-# print(df.empty)
+print(df.head())
+print(df.empty)
 print(df.tail())
