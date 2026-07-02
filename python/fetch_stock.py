@@ -1,6 +1,7 @@
 # import the libraries
 import pandas as pd
 import yfinance as yf
+from datetime import datetime
 import os
 
 # make a list of stock what all u want 
@@ -42,9 +43,10 @@ stocks = [
 def fetch_stock(stock):
     print(f"\n Downloading {stock}.....")
 
-    df = yf.download(
+    df = yf.download (
         stock,
-        period="5y",
+        start="2021-01-01",
+        end=datetime.today().strftime("%Y-%m-%d"),
         interval="1d"
     )
     # skipping part if there is no data
