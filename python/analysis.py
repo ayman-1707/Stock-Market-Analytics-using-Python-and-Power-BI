@@ -105,9 +105,6 @@ def analyse_stock(stock):
 
     print("Monthly_Analysis Saved Successfully")
 
-
-
-# if 1 copy name of comapnies from fetch_py there will be ns to avoid that ns 
 # automatically analyse every csv from Dataset folder
 files =os.listdir("Cleaned_Dataset")
 
