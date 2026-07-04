@@ -49,11 +49,13 @@ def analyse_stock(stock):
     df['Year'] = df['Date'].dt.year
     # Creating Months
     df['Month'] = df['Date'].dt.month_name()
+    # Create a Month Number 
+    df['Month_Number'] = df['Date'].dt.month
     # And to Check the Result
-    print(df[['Date','Year','Month']].head())
+    print(df[['Date','Year','Month','Month_Number']].head())
     # Now we group Year & Month
     Monthly_Analysis = (
-    df.groupby(['Month','Year']).agg(
+    df.groupby(['Month_Number','Month','Year']).agg(
        {
            'Open':'mean',
            'High':'mean',
@@ -65,32 +67,9 @@ def analyse_stock(stock):
     .reset_index()
     )
 
-    # Now let's make Months in Order
-    Month_Order = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ]
-
-    # ordering the Months to be in Order to Pandas
-    Monthly_Analysis['Month'] = pd.Categorical(
-        Monthly_Analysis['Month'],
-        categories = Month_Order,
-        ordered = True
-    )
-
-    # Sorting By Month And Then Year
+    # Sorting of Months based on Number 
     Monthly_Analysis = Monthly_Analysis.sort_values(
-        ['Month','Year']
+       ['Year','Month_Number']
     )
 
     print(Monthly_Analysis)
